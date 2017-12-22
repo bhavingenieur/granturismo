@@ -7,6 +7,7 @@ var flash=require('connect-flash');
 var app = express();
 var sch = require('./models/sched');
 var passport = require('passport');
+app.locals.moment = require('moment');
 var router = express.Router();
 
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -44,7 +45,7 @@ router.post('/submit-data', function(req,res){
    
     newSch.username = req.user.username;
     newSch.pikupdate = req.body.apptdate;
-   
+    
     newSch.pikuptime = req.body.slot;
     newSch.save(function(err) {
                     if (err)

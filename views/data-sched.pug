@@ -12,7 +12,7 @@ table.table-bordered
         each value in respdata
             tr
                 td
-                    p= value.pikupdate
+                    p= moment(value.pikupdate).format('dddd')
                 td
                     p= value.pikuptime 
 a(href='/profile')
