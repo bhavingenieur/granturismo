@@ -1,0 +1,21 @@
+link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
+
+h2 Schedule for #{user.username}
+table.table-bordered
+    thead
+        tr
+            th Date
+            th Time
+           
+        
+    tbody
+        each value in respdata
+            tr
+                td
+                    p= value.pikupdate
+                td
+                    p= value.pikuptime 
+a(href='/profile')
+    button.btn.btn-primary(type="button") Back to Scheduler
+                
+                

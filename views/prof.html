@@ -1,0 +1,29 @@
+<html ng-app='myapp'>
+<title>My page</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script type="text/javascript" src="../app.js"></script>
+<body ng-controller='myctrl'>
+    The user is {{user1}}
+    {{resp}}
+    <p>You are currently logged in as {{user1}}</p><a href="/logout">Logout</a>
+<form action="/submit-data" method="POST">
+<div class="form-group">
+<label>Enter slot:</label><
+select name="slot">
+<option selected="true" value="---">---</option>
+<option value="6:00 PM">6:00 PM</option>
+<option value="7:00 PM">7:00 PM</option>
+<option value="8:00 PM">8:00 PM</option>
+<option value="9:00 PM">9:00 PM</option></select>
+</div>
+<div class="form-group">
+<label>Date : <input type = "date" name="apptdate"/></label>
+</div>
+<div class="form-group">
+<label>Day : <input type = "text" name="apptday"/></label></div>
+<button class="btn btn-default" type="submit">Submit</button></form>
+<a href="/get-data"><button class="btn btn-primary" type="button">Get Schedule</button></a>
+    
+</body>
+</html>

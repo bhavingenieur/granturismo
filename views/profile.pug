@@ -1,0 +1,26 @@
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+meta(http-equiv='Cache-Control', content='no-store, no-cache, must-revalidate')
+meta(http-equiv='Pragma', content='no-cache')
+meta(http-equiv='Expires', content='-1')
+link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.js')
+
+if(user)
+  p You are currently logged in as #{user.username}
+  p.alert.alert-info #{msg}
+    
+  a(href="/logout") Logout
+  form( action='/submit-data' method='POST')
+        .form-group
+          label Enter slot:
+          select(name="slot")
+            option(selected='true' value='---') ---
+            option(value='6:00 PM') 6:00 PM
+            option(value='7:00 PM') 7:00 PM
+            option(value='8:00 PM') 8:00 PM
+            option(value='9:00 PM') 9:00 PM
+        .form-group
+          label Date : <input type = "date" name="apptdate"/>
+        button.btn.btn-default(type='submit') Submit
+  a(href='/get-data')
+        button.btn.btn-primary(type="button") Get Schedule

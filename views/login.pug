@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='Cache-Control', content='no-store, no-cache, must-revalidate')
+    meta(http-equiv='Pragma', content='no-cache')
+    meta(http-equiv='Expires', content='-1')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.js')
+  body
+  .container(align='center')
+    h1(align='center') Welcome To Gran Turismo
+    p(align='center') The next-gen Commute Solution
+    br
+    if(message.length>0)
+        p.alert.alert-danger #{message}
+    form(role='form', action="/login",method="post", style='max-width: 300px;')
+      .form-group
+          input.form-control(type='text', name="username", placeholder='Enter Username', value='sig')
+      .form-group
+        input.form-control(type='password', name="password", placeholder='Password' value='sig')
+      button.btn.btn-default(type='submit') Submit
+      
+      a(href='/')
+        button.btn.btn-primary(type="button") Cancel
+      br
+      

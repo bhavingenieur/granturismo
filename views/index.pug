@@ -1,0 +1,17 @@
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
+script(src='http://code.jquery.com/jquery.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.js')
+h1(align='center') Welcome To Gran Turismo
+p(align='center') The next-gen Commute Solution
+if (!user)
+  p(align='center')
+    button.btn.btn-default
+      a(href="/login") Login
+  
+    button.btn.btn-default
+      a(href="/register") Register
+img(src='https://get.pxhere.com/photo/black-and-white-car-vehicle-monochrome-sports-car-supercar-lamborghini-land-vehicle-monochrome-photography-automobile-make-automotive-design-luxury-vehicle-performance-car-13621.jpg' width="100%" height="auto")
+if(user)
+  p You are currently logged in as #{user.username}
+  a(href="/logout") Logout
