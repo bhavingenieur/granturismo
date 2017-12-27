@@ -40,6 +40,24 @@ router.get('/', function(req, res){
   res.render('index');
 });
 
+router.post('/modal-submit', function(req,res){
+    console.log(req.body.thedate,req.body.thetime,req.user.username)
+    
+    sch.findOneAndUpdate({username:req.user.username,pikupdate:req.body.thedate},{$set:{pikuptime:req.body.thetime}},function(error){
+        if(!error)
+            console.log("Yippy")
+    })
+})
+
+router.post('/modal-delete-submit', function(req,res){
+    console.log(req.body.thedate,req.user.username)
+    
+    sch.findOneAndRemove({username:req.user.username,pikupdate:req.body.thedate},function(error){
+        if(!error)
+            console.log("Yippy removed")
+    })
+})
+
 router.post('/submit-data', function(req,res){
     var newSch = sch();
    
@@ -52,8 +70,10 @@ router.post('/submit-data', function(req,res){
                         throw err;
                     else {req.session.name='t';}
                 });
+    
     res.render('profile',{ user : req.user, // get the user out of session and pass to template
             msg: 'Updated'});
+   
 })
 router.get('/auth/twitter', passport.authenticate('twitter'));
 
@@ -96,7 +116,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
     
     });
 router.get('/get-data', function(req, res) {
-    console.log(req.user.username);
+    //console.log(req.user.username);
     sch.find({ 'username': req.user.username }, function (err, sch1) { 
 if(!err)
   //res.send("Day :" + sch1[i].pikupday + 'user: ' + req.user.username + 'Time:'+sch1[i].pikuptime + 'Date:'+sch1[i].pikupdate) // Space Ghost is a talk show host.

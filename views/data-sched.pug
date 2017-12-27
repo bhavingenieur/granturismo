@@ -1,21 +1,101 @@
-link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
-
-h2 Schedule for #{user.username}
-table.table-bordered
-    thead
-        tr
-            th Date
-            th Time
-           
+doctype html
+html
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js')
+    
+    script.
+        $(document).on("click", ".zupDialog", function() {
+         var myBookId = $(this).data('id');
+         var descr = $(this).data('content')[0];
+         var d_descr = $(this).data('content')[1];
+         $(".modal-body #sched").html(descr);
+        $('#btnsubmit').click(function() {
         
-    tbody
-        each value in respdata
+        $.ajax({ method: "POST",
+            url: "/modal-submit",
+            data: { thetime: $('#slot option:selected').text(),thedate: d_descr }
+        })
+        
+        });
+        $('#slot').prop('selectedIndex',0);
+        $('#myModal').on('hidden.bs.modal', function () {
+        location.reload(true)
+        })
+           
+        })
+        $(document).on("click", ".zupdelDialog", function() {
+         var myBookId = $(this).data('id');
+         var descr = $(this).data('content')[0];
+         var d_descr = $(this).data('content')[1];
+         $(".modal-body #sched").html(descr);
+        $('#btndelsubmit').click(function() {
+        
+        $.ajax({ method: "POST",
+            url: "/modal-delete-submit",
+            data: {thedate: d_descr }
+        })
+        
+        
+        $('#mydelModal').on('hidden.bs.modal', function () {
+        location.reload(true)
+        })
+           
+        })
+        $('#btndelsubmitno').click(function() { });
+        })
+        
+    
+        
+    
+    h2 Schedule for #{user.username}
+    table.table.table-inverse.table-bordered
+        thead
             tr
-                td
-                    p= moment(value.pikupdate).format('dddd')
-                td
-                    p= value.pikuptime 
-a(href='/profile')
-    button.btn.btn-primary(type="button") Back to Scheduler
-                
-                
+                th(scope="col") Date
+                th(scope="col") Time
+        tbody
+            each value in respdata
+                tr
+                    td
+                        p= moment(value.pikupdate).format('dddd, MMMM Do YYYY')
+                    td
+                        p= value.pikuptime
+                    td
+                        button.zupDialog.btn.btn-primary.open-addialog(type='button', data-toggle='modal', data-content= [moment(value.pikupdate).format('dddd, MMMM Do YYYY'),value.pikupdate], data-id=value.pikuptime, data-target='#myModal') Edit
+                    td
+                        button.zupdelDialog.btn.btn-primary.open-addialog(type='button', data-toggle='modal', data-content= [moment(value.pikupdate).format('dddd, MMMM Do YYYY'),value.pikupdate], data-id=value.pikuptime, data-target='#mydelModal') Delete    
+                        
+    a(href='/profile')
+        button.btn.btn-primary(type="button") Back to Scheduler
+    #myModal.modal.fade
+        .modal-dialog.modal-lg
+            .modal-content
+                .modal-header
+                    h4.modal-title Modal Heading
+                    button.close(data-dismiss='modal') ×
+                .modal-body
+                    | Schedule for :
+                    #sched
+                    label Enter slot:
+                        select(name="slot" id="slot")
+                            option(selected='true' value='---') ---
+                            option(value='6:00 PM') 6:00 PM
+                            option(value='7:00 PM') 7:00 PM
+                            option(value='8:00 PM') 8:00 PM
+                            option(value='9:00 PM') 9:00 PM
+                .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal', id="btnsubmit") Close
+    #mydelModal.modal.fade
+        .modal-dialog.modal-lg
+            .modal-content
+                .modal-header
+                    h4.modal-title Modal Heading
+                    button.close(data-dismiss='modal') ×
+                .modal-body
+                    | Are you sure you want to delete the schedule for:
+                    #sched
+                .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal', id="btndelsubmit") Yes
+                        button.btn.btn-secondary(type='button', data-dismiss='modal', id="btndelsubmitno") No
