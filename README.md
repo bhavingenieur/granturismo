@@ -1,18 +1,9 @@
+GranTurismo
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+A CRUD App to schedule daily  Cab Pickups by employees of an organization
 
-
-Hi there! Welcome to Cloud9 IDE!
-
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
+Tools:
+1. Server Side Framemwork - NodeJS with Express JS 4.0
+2. Template engine - Pug(formerly Jade)
+3. Database - MongoDB(used the Mongoose Module for Node which is a wrapper for MongoDB)
+4. UI - Jquery(to implement Modals), CSS, BootStrap v4.0
