@@ -2,27 +2,45 @@ doctype html
 html
   head
     title= title
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(http-equiv='Cache-Control', content='no-store, no-cache, must-revalidate')
-    meta(http-equiv='Pragma', content='no-cache')
-    meta(http-equiv='Expires', content='-1')
-    link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
-    script(src='http://code.jquery.com/jquery.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.js')
-    
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    link(rel='stylesheet' href='mystyle.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js')
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script(src='form-validate.js')
+      
   body
-  .container
-    h1 Register Page
-    p.lead Say something worthwhile here.
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') Home
+        ul.nav.navbar-nav.navbar-right
+          li: a(href="/login") Login
+          li: a(href="/register") Register
+    .banner.container
+      .jumbotron.h1 Gran Turismo
+        p.h3 Online Transport Scheduler 
     if(message.length>0)
         p.alert.alert-danger #{message}
     br
-    form(role='form', action="/register",method="post", style='max-width: 300px;')
-      .form-group
-          input.form-control(type='text', name="username", placeholder='Enter Username')
-      .form-group
-        input.form-control(type='password', name="password", placeholder='Password')
-      button.btn.btn-default(type='submit') Submit
-      
-      a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+    .container(align='center')
+      form(role='form', name='registero', action="/register",method="post", style='max-width: 300px;')
+        .form-group
+          strong
+            .span(align='left').strong Username:
+          input.form-control(type='text', name="username", id='username',placeholder='Enter Username')
+        .form-group
+          strong
+            .span(align='left').strong Password:
+          input.form-control(type='password', name="password",id='password', placeholder='Password')
+        .form-group
+          strong
+            .span(align='left').strong Confirm Password:
+          input.form-control(type='password', name="password2", id='password2',placeholder='Confirm Password')
+        button.btn.btn-success(type='submit') Submit
+        
+        a(href='/')
+          button.btn.btn-default(type="button") Cancel

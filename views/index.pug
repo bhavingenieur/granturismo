@@ -1,17 +1,34 @@
-meta(name='viewport', content='width=device-width, initial-scale=1.0')
-link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
-script(src='http://code.jquery.com/jquery.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.js')
-h1(align='center') Welcome To Gran Turismo
-p(align='center') The next-gen Commute Solution
-if (!user)
-  p(align='center')
-    button.btn.btn-default
-      a(href="/login") Login
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src='https://code.jquery.com/jquery.js')
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")  
+    link(rel='stylesheet' href='mystyle.css')
+    
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') Home
+        ul.nav.navbar-nav.navbar-right
+          li: a(href="/login") Login
+          li: a(href="/register") Register
   
-    button.btn.btn-default
-      a(href="/register") Register
-img(src='https://get.pxhere.com/photo/black-and-white-car-vehicle-monochrome-sports-car-supercar-lamborghini-land-vehicle-monochrome-photography-automobile-make-automotive-design-luxury-vehicle-performance-car-13621.jpg' width="100%" height="auto")
-if(user)
-  p You are currently logged in as #{user.username}
-  a(href="/logout") Logout
+    .banner.container
+      .jumbotron.h1 Gran Turismo
+        p.h3 Online Transport Scheduler
+    .container(align='center')
+      .row
+        .col-md-4
+          h2 #1
+          p Create an account and Login
+        .col-md-4
+          h2 #2
+          p Schedule your transport by choosing the Date and Time of your pickup. You can also view your current schedule
+        .col-md-4 
+          h2 #3
+          p Edit/cancel your transport using the corresponding actions
+        

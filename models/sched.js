@@ -4,4 +4,4 @@ var schedulerSchema = mongoose.Schema({
         pikupdate: Date,
         pikuptime:String
 });
-module.exports = mongoose.model('schedula', schedulerSchema);
+module.exports = mongoose.model('schedulero', schedulerSchema);

@@ -4,6 +4,7 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var flash=require('connect-flash');
+var path=require('path')
 var app = express();
 var sch = require('./models/sched');
 var passport = require('passport');
@@ -12,6 +13,7 @@ var router = express.Router();
 
 app.use(bodyparser.urlencoded({ extended: true }));
 // configure Express
+app.use(express.static(path.join(__dirname, 'views')));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 require('./passport')(passport);

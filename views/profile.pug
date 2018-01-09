@@ -1,25 +1,48 @@
-meta(name='viewport', content='width=device-width, initial-scale=1.0')
-meta(http-equiv='Cache-Control', content='no-store, no-cache, must-revalidate')
-meta(http-equiv='Pragma', content='no-cache')
-meta(http-equiv='Expires', content='-1')
-link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css', rel='stylesheet', media='screen')
-
-if(user)
-  p You are currently logged in as #{user.username}
-  p.alert.alert-info #{msg}
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(http-equiv='Cache-Control', content='no-store, no-cache, must-revalidate')
+    meta(http-equiv='Pragma', content='no-cache')
+    meta(http-equiv='Expires', content='-1')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    link(rel='stylesheet' href='mystyle.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js')
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     
-  a(href="/logout") Logout
-  form( action='/submit-data' method='POST')
-        .form-group
-          label Enter slot:
-          select(name="slot")
-            option(selected='true' value='---') ---
-            option(value='6:00 PM') 6:00 PM
-            option(value='7:00 PM') 7:00 PM
-            option(value='8:00 PM') 8:00 PM
-            option(value='9:00 PM') 9:00 PM
-        .form-group
-          label Date : <input type = "date" name="apptdate"/>
-        button.btn.btn-default(type='submit') Submit
-  a(href='/get-data')
-        button.btn.btn-primary(type="button") Get Schedule
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') Home
+        ul.nav.navbar-nav.navbar-right
+          li: a(href="/logout") Logout
+          li: a(href="/get-data") Schedule Viewer
+    .banner.container
+      .jumbotron.h1 Welcome, #{user.username} !
+  .container  
+    if(user)
+      p.alert.alert-info #{msg}
+      
+      form.form-horizontal(action='/submit-data' method='POST')
+            .form-group
+              .col-sm-10
+                label Enter slot:
+                select.form-control(name="slot")
+                  option(selected='true' value='---') ---
+                  option(value='6:00 PM') 6:00 PM
+                  option(value='7:00 PM') 7:00 PM
+                  option(value='8:00 PM') 8:00 PM
+                  option(value='9:00 PM') 9:00 PM
+            .form-group
+              .col-sm-10
+                label Date : 
+                input.form-control(type = "date" name="apptdate")
+            button.btn.btn-default(type='submit') Submit
+      br
+      a(href='/get-data')
+            button.btn.btn-primary(type="button") View Schedule
