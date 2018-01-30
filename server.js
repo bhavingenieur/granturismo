@@ -123,7 +123,7 @@ router.get('/get-data', function(req, res) {
 if(!err)
   //res.send("Day :" + sch1[i].pikupday + 'user: ' + req.user.username + 'Time:'+sch1[i].pikuptime + 'Date:'+sch1[i].pikupdate) // Space Ghost is a talk show host.
   
-  res.render('data-sched', {respdata:sch1, user:req.user});
+  res.render('prf', {respdata:sch1, user:req.user});
 })});
 
 
